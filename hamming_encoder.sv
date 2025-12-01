@@ -13,22 +13,20 @@ module hamming_encoder(
     always_comb begin
         int message_index;
         int hamming_message_index;
+        message_index = 0;
         hamming_message_index = 0;
         //insert message
-        for(message_index = 0; message_index < 11 ; message_index++) begin
-            /* verilator lint_off ALWCOMBORDER */
-            foreach(parity_pos[i]) begin
-                if (hamming_message_index [3:0] == parity_pos[i]) begin // if it is a parity bit, skip
-                    hamming_message_index++;
-                end
+        for(hamming_message_index = 0; hamming_message_index < 16; hamming_message_index++) begin
+            if (!((hamming_message_index == parity_pos[0])||
+            (hamming_message_index == parity_pos[1])||
+            (hamming_message_index == parity_pos[2])||
+            (hamming_message_index == parity_pos[3])||
+            (hamming_message_index == parity_pos[4]))) begin // if it is not a parity bit, read (note "!(hamming_message_index inside {parity_pos})" is not supported in verilator)
+                //insert message bit into proper place
+                hamming_message[hamming_message_index] = message[message_index];
+                message_index++;
             end
-
-            //insert message bit into proper place
-            hamming_message[hamming_message_index] = message[message_index];
-            
-            //increment
-            hamming_message_index++;
-            /* verilator lint_on ALWCOMBORDER */
+    
         end
 
         //calculate parity bits
