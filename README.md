@@ -20,5 +20,5 @@ This project presents a SystemVerilog implemenation of a Hamming Encoder and Ham
 
 ## Run testbench
 ```bash
-verilator --timing --trace --build --cc ./hamming_tb.sv ./hamming_decoder.sv ./hamming_encoder.sv ./hamming_noise_channel.sv
+verilator --timing --trace --build --Wno-WIDTHEXPAND --cc ./hamming_tb.sv ./hamming_decoder.sv ./hamming_encoder.sv ./hamming_noise_channel.sv --exe ./sim_main.cpp
 ```
