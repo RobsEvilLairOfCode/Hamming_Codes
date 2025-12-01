@@ -16,9 +16,9 @@ module hamming_noise_channel(
         changed_one = 1'b0;
         changed_two = 1'b0;
 
-        if(rand_number > 96) begin
+        if(rand_number < 96) begin
             //Do nothing
-        end else if (rand_number > 144) begin
+        end else if (rand_number < 144) begin
             //flip one
             output_message[rand_number % 16] = ~input_message[rand_number % 16];
             changed_one = 1'b1;
