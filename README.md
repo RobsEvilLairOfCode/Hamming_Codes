@@ -22,3 +22,11 @@ This project presents a SystemVerilog implemenation of a Hamming Encoder and Ham
 ```bash
 verilator --timing --trace --build --Wno-WIDTHEXPAND --cc ./hamming_tb.sv ./hamming_decoder.sv ./hamming_encoder.sv ./hamming_noise_channel.sv --exe ./sim_main.cpp
 ```
+
+```bash
+./obj_dir/Vhamming_tb
+```
+
+```bash
+gtkwave ./waveform_hamming.vcd
+```
